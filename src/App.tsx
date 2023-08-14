@@ -169,7 +169,7 @@ function App() {
 					}
 					break;
 				case "confirmPassword":
-					if (value === "") {
+					if (value.trim() === "") {
 						setErrorState((prevErrors) => ({
 							...prevErrors,
 							[name]: errors.confirmPassword[2],
