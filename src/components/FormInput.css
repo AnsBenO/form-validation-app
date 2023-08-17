@@ -64,8 +64,7 @@ input:not(:focus)~span {
 }
 
 span.inner-error-birthday {
-	left: 90% !important;
-
+	left: 94% !important;
 }
 
 input.wrong-input:not(:focus) {
