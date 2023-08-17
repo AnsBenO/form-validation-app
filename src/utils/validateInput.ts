@@ -8,7 +8,7 @@ const isPatternValid = (value: string, pattern: RegExp) => pattern.test(value);
 const validateUsername = (value: string) => {
 	if (isValueEmpty(value)) {
 		return errors.username.required;
-	} else if (!isPatternValid(value, inputs.username.pattern)) {
+	} else if (!isPatternValid(value.trim(), inputs.username.pattern)) {
 		return errors.username.invalid;
 	} else {
 		return "";
@@ -18,7 +18,7 @@ const validateUsername = (value: string) => {
 const validateEmail = (value: string) => {
 	if (isValueEmpty(value)) {
 		return errors.email.required;
-	} else if (!isPatternValid(value, inputs.email.pattern)) {
+	} else if (!isPatternValid(value.trim(), inputs.email.pattern)) {
 		return errors.email.invalid;
 	} else {
 		return "";
