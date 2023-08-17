@@ -21,7 +21,42 @@ function App() {
 		password: errors.password.default,
 		confirmPassword: errors.confirmPassword.default,
 	});
-
+	const showErrors = (name: string, value: string) => {
+		switch (name) {
+			case "username":
+				setErrorState((prevErrors) => ({
+					...prevErrors,
+					[name]: validateInput.validateUsername(value),
+				}));
+				break;
+			case "email":
+				setErrorState((prevErrors) => ({
+					...prevErrors,
+					[name]: validateInput.validateEmail(value),
+				}));
+				break;
+			case "password":
+				setErrorState((prevErrors) => ({
+					...prevErrors,
+					[name]: validateInput.validatePassword(value),
+				}));
+				break;
+			case "birthday":
+				setErrorState((prevErrors) => ({
+					...prevErrors,
+					[name]: validateInput.validateBirthday(value),
+				}));
+				break;
+			case "confirmPassword":
+				setErrorState((prevErrors) => ({
+					...prevErrors,
+					[name]: validateInput.validateConfirmPassword(value, values.password),
+				}));
+				break;
+			default:
+				break;
+		}
+	};
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
 		setValues((prevValues) => ({
@@ -31,46 +66,13 @@ function App() {
 
 		const input = Object.keys(inputs).find((input) => input === name);
 		if (input) {
-
-			switch (name) {
-				case "username":
-					setErrorState((prevErrors) => ({
-						...prevErrors,
-						[name]: validateInput.validateUsername(value),
-					}));
-					break;
-				case "email":
-					setErrorState((prevErrors) => ({
-						...prevErrors,
-						[name]: validateInput.validateEmail(value),
-					}));
-					break;
-				case "password":
-					setErrorState((prevErrors) => ({
-						...prevErrors,
-						[name]: validateInput.validatePassword(value),
-					}));
-					break;
-				case "birthday":
-					setErrorState((prevErrors) => ({
-						...prevErrors,
-						[name]: validateInput.validateBirthday(value),
-					}));
-					break;
-				case "confirmPassword":
-					setErrorState((prevErrors) => ({
-						...prevErrors,
-						[name]: validateInput.validateConfirmPassword(value, values.password),
-					}));
-					break;
-				default:
-					break;
-			}
+			showErrors(name, value);
 		}
-	};
+	}
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
+		Object.keys(values).forEach(key => showErrors(key, values[key as keyof typeof values]))
 	};
 
 	return (

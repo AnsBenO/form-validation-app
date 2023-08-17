@@ -16,6 +16,7 @@ button {
 	width: 100%;
 	box-sizing: border-box;
 	border-radius: 4px;
+	transition: all .3s ease;
 }
 
 input:focus {
@@ -54,10 +55,16 @@ div.form-input span {
 	top: 53%;
 	left: 100%;
 	transform: translateX(-105%);
+	transition: opacity .3s ease;
 }
 
 input:not(:focus)~span {
 	opacity: 1;
+}
+
+span.inner-error-birthday {
+	left: 90% !important;
+
 }
 
 input.wrong-input:not(:focus) {

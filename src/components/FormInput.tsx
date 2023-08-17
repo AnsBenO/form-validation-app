@@ -32,11 +32,10 @@ const FormInput = ({
 				name={name}
 				value={value}
 				onChange={onChange}
-				className={`form-input ${
-					errorMessage !== "" ? "wrong-input" : "valid-input"
-				}`}
+				className={`form-input ${errorMessage !== "" ? "wrong-input" : "valid-input"
+					}`}
 			/>
-			<span>{errorMessage}</span>
+			<span className={`inner-error-${name}`}>{errorMessage}</span>
 		</div>
 	);
 };
