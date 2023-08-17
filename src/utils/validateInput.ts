@@ -36,7 +36,21 @@ const validatePassword = (value: string) => {
 };
 
 const validateBirthday = (value: string) => {
-	return isValueEmpty(value) ? errors.birthday.required : "";
+	if (isValueEmpty(value)) {
+		return errors.birthday.required;
+	}
+	const birthDate = new Date(value);
+	const currentDate = new Date();
+	const ageDiffMilliseconds = currentDate.getTime() - birthDate.getTime();
+	const ageDate = new Date(ageDiffMilliseconds);
+
+	const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+	if (age < 18) {
+		return errors.birthday.invalidAge;
+	}
+
+	return "";
 };
 
 const validateConfirmPassword = (value: string, passwordValue: string) => {

@@ -13,6 +13,7 @@ const errors = {
 		default: "",
 		invalid: "Invalid birthday. You must be at least 18 years old.",
 		required: "Birthday is required",
+		invalidAge: "You must be 18 or older",
 	},
 	password: {
 		default: "",

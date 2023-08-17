@@ -6,7 +6,7 @@ const inputs = {
 		placeHolder: "Username",
 		label: "Username",
 		errorMessage: "",
-		pattern: /^[a-zA-Z0-9_-]{3,16}$/,
+		pattern: /^[a-zA-Z]{2,}[-_]?[a-zA-Z0-9]{2,16}$/,
 	},
 	email: {
 		id: 2,
